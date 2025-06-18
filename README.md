@@ -1,70 +1,26 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+FitQuest - The Gamified Fitness TrackerFitQuest is a dynamic and engaging web application designed to transform fitness from a daily chore into an exciting, gamified journey. Track your progress, compete in leagues, and follow structured workout plans to achieve your fitness goals.✨ Key FeaturesGamified Progression: Level up and earn XP for logging activities and completing daily quests.Streak Tracking: Stay motivated by building and maintaining your daily activity streak.Interactive Dashboard: A central hub to view your daily stats, progress, and activity feed.Comprehensive Workout Library:Browse detailed, week-long workout plans for various goals (Strength, Calisthenics, Endurance, etc.).Learn proper form with step-by-step exercise guides, complete with visuals and key tips.Active Plan Integration: Select a workout plan and get a "Today's Workout" card on your dashboard, guiding you through your daily routine.Daily Task Completion: Check off exercises as you complete them in your daily workout and earn bonus XP.Secure Google Authentication: Easy and secure sign-in using your Google account.Personalization: Edit your display name to personalize your profile.Live Data Sync: All progress is saved in real-time using Firebase Firestore.🚀 Getting StartedTo get a local copy up and running, follow these simple steps.PrerequisitesNode.js & npm: Make sure you have Node.js installed. You can download it here. npm comes with Node.js.node -v
+npm -v
+Git: You'll need Git for version control.git --version
+Installation & SetupClone the repo:git clone https://github.com/YourUsername/fitquest-react-app.git
+cd fitquest-react-app
+Install NPM packages:npm install
+Set up Firebase:Create a new project at the Firebase Console.Add a new Web App to your project.Copy the firebaseConfig object provided.Enable Google Authentication and Firestore Database in your Firebase project.Create an Environment File:In the root of your project folder, create a new file named .env.localAdd your Firebase configuration keys to this file, prefixed with REACT_APP_:REACT_APP_API_KEY=AIzaSy...
+REACT_APP_AUTH_DOMAIN=your-project-id.firebaseapp.com
+REACT_APP_PROJECT_ID=your-project-id
+REACT_APP_STORAGE_BUCKET=your-project-id.appspot.com
+REACT_APP_MESSAGING_SENDER_ID=...
+REACT_APP_APP_ID=...
+Update Firebase Security Rules:In the Firebase Console, go to Firestore Database -> Rules.Replace the default rules with the following to allow users to read public data and write to their own documents:rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /artifacts/{appId}/users/{userId}/{documents=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    match /artifacts/{appId}/users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth.uid == userId;
+    }
+  }
+}
+Publish the new rules.How to RunStart the development server:npm start
+Open http://localhost:3000 to view it in your browser.部署 (Deployment)This app is configured for easy deployment on Vercel. Simply import your GitHub repository into Vercel and add the same environment variables from your .env.local file to the Vercel project settings.🛠️ Technologies UsedReact: A JavaScript library for building user interfaces.Firebase: Used for authentication, real-time database (Firestore), and hosting.Tailwind CSS: A utility-first CSS framework for rapid UI development.Lucide React: Beautiful and consistent icons.Generated by Gemini at Surat, Gujarat, India on Wednesday, June 18, 2025.
