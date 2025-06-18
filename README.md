@@ -36,15 +36,3 @@
 
 ---
 
-## 🚀 Getting Started
-
-Follow these steps to get a local copy up and running:
-
-### ✅ Prerequisites
-
-Make sure you have the following installed:
-
-- [Node.js & npm](https://nodejs.org/)  
-  ```bash
-  node -v
-  npm -v
