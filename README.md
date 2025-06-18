@@ -1,120 +1,50 @@
-FitQuest - The Gamified Fitness Tracker
-FitQuest is a dynamic and engaging web application designed to transform fitness from a daily chore into an exciting, gamified journey. Track your progress, compete in leagues, and follow structured workout plans to achieve your fitness goals.
+# 🏋️‍♂️ FitQuest - The Gamified Fitness Tracker
 
-✨ Key Features
-Gamified Progression: Level up and earn XP for logging activities and completing daily quests.
+**FitQuest** is a dynamic and engaging web application designed to transform fitness from a daily chore into an exciting, gamified journey. Track your progress, compete in leagues, and follow structured workout plans to achieve your fitness goals.
 
-Streak Tracking: Stay motivated by building and maintaining your daily activity streak.
+---
 
-Interactive Dashboard: A central hub to view your daily stats, progress, and activity feed.
+## ✨ Key Features
 
-Comprehensive Workout Library:
+- **🎮 Gamified Progression**  
+  Level up and earn XP for logging activities and completing daily quests.
 
-Browse detailed, week-long workout plans for various goals (Strength, Calisthenics, Endurance, etc.).
+- **🔥 Streak Tracking**  
+  Stay motivated by building and maintaining your daily activity streak.
 
-Learn proper form with step-by-step exercise guides, complete with visuals and key tips.
+- **📊 Interactive Dashboard**  
+  View your daily stats, progress, and activity feed all in one central hub.
 
-Active Plan Integration: Select a workout plan and get a "Today's Workout" card on your dashboard, guiding you through your daily routine.
+- **🏋️ Comprehensive Workout Library**  
+  - Browse week-long plans tailored for goals like Strength, Calisthenics, Endurance, and more.  
+  - Step-by-step guides for exercises with visuals and tips on form.
 
-Daily Task Completion: Check off exercises as you complete them in your daily workout and earn bonus XP.
+- **✅ Active Plan Integration**  
+  Automatically get a "Today's Workout" card on your dashboard from your selected plan.
 
-Secure Google Authentication: Easy and secure sign-in using your Google account.
+- **📅 Daily Task Completion**  
+  Check off exercises as you go and earn bonus XP.
 
-Personalization: Edit your display name to personalize your profile.
+- **🔐 Secure Google Authentication**  
+  Easy and secure sign-in using your Google account.
 
-Live Data Sync: All progress is saved in real-time using Firebase Firestore.
+- **🎨 Personalization**  
+  Customize your profile with a unique display name.
 
-🚀 Getting Started
-To get a local copy up and running, follow these simple steps.
+- **☁️ Live Data Sync**  
+  Real-time updates and progress tracking via Firebase Firestore.
 
-Prerequisites
-Node.js & npm: Make sure you have Node.js installed. You can download it here. npm comes with Node.js.
+---
 
-node -v
-npm -v
+## 🚀 Getting Started
 
+Follow these steps to get a local copy up and running:
 
-Git: You'll need Git for version control.
+### ✅ Prerequisites
 
-git --version
+Make sure you have the following installed:
 
-
-Installation & Setup
-Clone the repo:
-
-git clone https://github.com/YourUsername/fitquest-react-app.git
-cd fitquest-react-app
-
-
-Install NPM packages:
-
-npm install
-
-
-Set up Firebase:
-
-Create a new project at the Firebase Console.
-
-Add a new Web App to your project.
-
-Copy the firebaseConfig object provided.
-
-Enable Google Authentication and Firestore Database in your Firebase project.
-
-Create an Environment File:
-
-In the root of your project folder, create a new file named .env.local
-
-Add your Firebase configuration keys to this file, prefixed with REACT_APP_:
-
-REACT_APP_API_KEY=AIzaSy...
-REACT_APP_AUTH_DOMAIN=your-project-id.firebaseapp.com
-REACT_APP_PROJECT_ID=your-project-id
-REACT_APP_STORAGE_BUCKET=your-project-id.appspot.com
-REACT_APP_MESSAGING_SENDER_ID=...
-REACT_APP_APP_ID=...
-
-
-Update Firebase Security Rules:
-
-In the Firebase Console, go to Firestore Database -> Rules.
-
-Replace the default rules with the following to allow users to read public data and write to their own documents:
-
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /artifacts/{appId}/users/{userId}/{documents=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    match /artifacts/{appId}/users/{userId} {
-      allow read: if request.auth != null;
-      allow write: if request.auth.uid == userId;
-    }
-  }
-}
-
-
-Publish the new rules.
-
-How to Run
-Start the development server:
-
-npm start
-
-
-Open http://localhost:3000 to view it in your browser.
-
-部署 (Deployment)
-This app is configured for easy deployment on Vercel. Simply import your GitHub repository into Vercel and add the same environment variables from your .env.local file to the Vercel project settings.
-
-🛠️ Technologies Used
-React: A JavaScript library for building user interfaces.
-
-Firebase: Used for authentication, real-time database (Firestore), and hosting.
-
-Tailwind CSS: A utility-first CSS framework for rapid UI development.
-
-Lucide React: Beautiful and consistent icons.
-
-Generated by Gemini at Surat, Gujarat, India on Wednesday, June 18, 2025.
+- [Node.js & npm](https://nodejs.org/)  
+  ```bash
+  node -v
+  npm -v
