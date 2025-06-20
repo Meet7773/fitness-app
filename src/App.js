@@ -488,9 +488,8 @@ export default function App() {
                     <div className="space-y-6 md:space-y-8">
                         <DashboardHeader name={userData.name} onLogActivity={() => setIsLogModalOpen(true)} onUpdateName={handleUpdateName} />
                         <TodaysWorkoutCard activePlanName={userData.activePlan} dailyCompletion={dailyCompletion} onMarkDone={handleMarkDone} />
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                             <StatsCard userData={userData} xpProgress={xpProgress} xpToNextLevel={xpToNextLevel} />
-                            <WeeklyActivityChart workouts={workouts} />
                             <QuestsCard quests={quests} />
                         </div>
                         <ActivityFeed workouts={workouts} />
@@ -565,58 +564,6 @@ function TodaysWorkoutCard({ activePlanName, dailyCompletion, onMarkDone }) {
     )
 }
 
-function WeeklyActivityChart({ workouts }) {
-    const chartData = useMemo(() => {
-        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        const data = Array(7).fill(0);
-        const today = new Date();
-        today.setHours(23, 59, 59, 999);
-        
-        const sevenDaysAgo = new Date();
-        sevenDaysAgo.setDate(today.getDate() - 6);
-        sevenDaysAgo.setHours(0, 0, 0, 0);
-
-        workouts.forEach(w => {
-            if (w.timestamp && w.timestamp.toDate) {
-                const workoutDate = w.timestamp.toDate();
-                if (workoutDate >= sevenDaysAgo && workoutDate <= today) {
-                    data[workoutDate.getDay()] += 1;
-                }
-            }
-        });
-        
-        const todayIndex = new Date().getDay();
-        const labels = [];
-        const chartValues = [];
-        for (let i = 6; i >= 0; i--) {
-            const dayIndex = (todayIndex - i + 7) % 7;
-            labels.push(days[dayIndex]);
-            chartValues.push(data[dayIndex]);
-        }
-        
-        return { labels, chartValues };
-    }, [workouts]);
-
-    const maxVal = Math.max(...chartData.chartValues, 1);
-
-    return (
-         <div className="bg-gray-800 p-6 rounded-xl">
-            <h3 className="text-xl font-bold mb-4 flex items-center gap-2"><BarChart3 className="text-green-400" />Weekly Report</h3>
-            <div className="flex justify-between items-end h-40 gap-2">
-                {chartData.labels.map((label, index) => (
-                    <div key={index} className="flex-1 flex flex-col items-center justify-end gap-1">
-                        <div 
-                            className="w-full bg-cyan-500 rounded-t-md transition-all duration-500"
-                            style={{ height: `${(chartData.chartValues[index] / maxVal) * 100}%` }}
-                        ></div>
-                        <span className="text-xs text-gray-400">{label}</span>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-}
-
 function Header({ userData, setCurrentView, currentView }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const handleSignOut = () => { signOut(auth).catch(error => console.error("Sign out error:", error)); };
@@ -668,7 +615,6 @@ function Header({ userData, setCurrentView, currentView }) {
                     </div>
                 </div>
             </div>
-            {/* Mobile Menu */}
             {isMenuOpen && (
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
