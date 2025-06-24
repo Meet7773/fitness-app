@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Flame, Dumbbell, Zap, Target, Award, TrendingUp, X, Plus, Star, Footprints, UserCircle, LogOut, Trophy, Pencil, Check, BookOpen, Search, ChevronDown, BarChart3, CalendarCheck2, Users, Shield, Menu, BrainCircuit, HeartPulse, Clock } from 'lucide-react';
-import { auth, db, appId } from '../api/firebase';
+import { auth, db, appId } from './api/firebase';
 import { onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { getFirestore, doc, onSnapshot, setDoc, addDoc, collection, updateDoc, serverTimestamp, query, where, getDocs } from 'firebase/firestore';
 
