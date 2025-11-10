@@ -353,15 +353,8 @@ export default function App() {
                         />;
             case 'workouts':
                 return <WorkoutsPage 
-                    userData={userData}
-                    dailyCompletion={dailyCompletion}
-                    onMarkDone={handleMarkDone}
-                    xpProgress={xpProgress}
-                    xpToNextLevel={xpToNextLevel}
-                    quests={quests}
-                    workouts={workouts}
-                    setIsLogModalOpen={setIsLogModalOpen}
-                    onUpdateName={handleUpdateName}
+                    activePlanName={userData.activePlan}
+                    onSelectPlan={handleSelectPlan}
                 />;
             case 'leagues':
                 return <LeaguesPage currentUserId={user.uid} userData={userData} leagueRoster={leagueRoster} />;
